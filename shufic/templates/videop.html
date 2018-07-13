@@ -1,0 +1,19 @@
+<head>
+    <title>Video</title>
+</head>
+
+<body>
+{% extends 'main.html' %}
+{% block onevideo %}
+    {% load staticfiles %}
+    {% for url in urls %}
+    <iframe src="{{ url.Video_URL }}" width="300" height="300" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+    <h2><a href="onevideo/{{ url.id }}">{{ url.Video_title }}</a></h2>
+    <h3>{{ url.Video_o }}</h3>
+    <h4> <a href="/videoshufic/Vaddlikes/{{url.id}}"> <img src="{% static 'like.jpg' %}" width="50px" height="50px"> {{ url.Video_like }}</a> </h4>
+        {% for com in url.comments %}
+        <h3>{{ com }}</h3>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+</body>

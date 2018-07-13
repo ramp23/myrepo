@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block onevideo %}
+<iframe width="854" height="480" src={{video.Video_URL}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<h1>{{ video.Video_title }}</h1>
+<h2>{{ video.Video_o }}</h2>
+<h2><a href="/videoshufic/addlikes/{{ video.id }}"><img src="{% static 'Like.jpg' %}" width = "100px" height="60px">{{ video.Video_like }}</a></h2>
+    {% for com in comment %}
+        <h3>{{ com }}</h3>
+    {% endfor %}
+
+<h2>
+    {% if username %}
+    <form action="/videoshufic/addcomment/{{video.id}}/" method = "post"> {% csrf_token %}{{ form }} <input type="submit" class="button" value="Добавить коментарий"/></form>
+    {% endif %}
+</h2>
+
+{% endblock %}
